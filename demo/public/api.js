@@ -5,7 +5,11 @@
 // ============================================================
 
 var API = (function () {
-  var API_BASE = '/api';
+  var API_BASE = (function () {
+    var stored = localStorage.getItem('bj_api_base');
+    if (stored) return stored + '/api';
+    return 'https://chiti-console.vercel.app/api';
+  })();
 
   // ─── Auth Token Management ──────────────────────────────
   var TOKEN_KEY = 'bj_auth_token';
@@ -365,7 +369,7 @@ var API = (function () {
     // ─── Dashboard / Analytics ─────────────────────────────
     dashboard: {
       stats: function () {
-        return apiGet('/dashboard/stats').catch(function () { return MOCK.dashboard; });
+        return apiGet('/bj/dashboard').catch(function () { return MOCK.dashboard; });
       },
 
       reports: function (params) {
