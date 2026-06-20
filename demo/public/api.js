@@ -5,8 +5,7 @@
 // ============================================================
 
 var API = (function () {
-  var CONSOLE_URL = 'https://chiti-console.vercel.app';
-  var API_BASE = CONSOLE_URL + '/api';
+  var API_BASE = '/api';
 
   // ─── Auth Token Management ──────────────────────────────
   var TOKEN_KEY = 'bj_auth_token';
@@ -392,7 +391,7 @@ var API = (function () {
 
     getBaseUrl: function () { return API_BASE; },
 
-    getConsoleUrl: function () { return CONSOLE_URL; },
+    getConsoleUrl: function () { return window.location.origin; },
 
     clearAuth: clearAuth
   };
